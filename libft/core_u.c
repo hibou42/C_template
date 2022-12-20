@@ -18,8 +18,6 @@
 
 int	core_u(unsigned int job, int i)
 {
-	if (job < 0)
-		job = UINT_MAX - job + 1;
 	if (job >= 10)
 		i = core_u(job / 10, i);
 	ft_putchar_fd(job % 10 + '0', 1);
