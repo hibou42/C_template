@@ -83,6 +83,7 @@ ENDCOLOR		=		\033[0m
 
 START			=		echo "$(BLUE_T)Start compilation LIBFT\n$(ENDCOLOR)"
 END_COMP_LIB	=		echo "$(BLUE_T)End compilation LIBFT\n$(ENDCOLOR)"
+END_CLEAN	=		echo "$(GREEN)Succes cleaning\n$(ENDCOLOR)"
 CHARG_LINE		=		echo "$(BLUE)    $(ENDCOLOR)\c"
 BS_N			=		echo "\n"
 
@@ -102,17 +103,18 @@ start:
 		@$(CHARG_LINE)
 
 ${NAME}: ${OBJS}
-		 @$(BS_N)
+		@$(BS_N)
 		@${AR} ${NAME} ${OBJS}
 		@$(END_COMP_LIB)
 
 #***** Clean *****#
 
 clean:		
-		${RM} ${OBJS} ${OBJSB}
+		@${RM} ${OBJS} ${OBJSB}
 
 fclean:		clean
-		${RM} ${NAME}
+		@${RM} ${NAME}
+		@$(END_CLEAN)
 
 re:			fclean all
 
