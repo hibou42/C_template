@@ -2,7 +2,7 @@
 
 int main (void)
 {
-
-    printf("coucou\n");
-    return (0);
+	printf("coucou\n");
+	ft_printf("hibou\n");
+	return (0);
 }

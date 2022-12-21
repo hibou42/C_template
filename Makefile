@@ -4,7 +4,7 @@ NAME			=		template
 
 #***** Sources / Objs *****#
 
-SRC				=		z_test.c \
+SRC				=		z_test.c
 
 OBJS			=		$(SRC:.c=.o)
 
@@ -80,7 +80,7 @@ l :			${OBJS}
 			@$(END_COMP)
 
 test: 		all
-			@${CC} ${CFLAGS} ${OBJS}
+			@${CC} ${CFLAGS} ${OBJS} libft/libft.a
 			@$(TEST)
 			@./a.out
 			@rm -f ./a.out			

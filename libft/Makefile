@@ -58,6 +58,7 @@ SRCS	=	ft_atoi.c \
 			core_p.c \
 			core_x.c \
 			core_xx.c \
+			ft_puthex.c 
 
 OBJS	= ${SRCS:.c=.o}
 
