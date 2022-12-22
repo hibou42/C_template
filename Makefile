@@ -23,12 +23,13 @@ GREEN			=		\033[1;32m
 BG_GREEN		=		\033[42m
 BLUE			=		\033[0;94m
 RED				=		\033[1;31m
+GREY			=		\033[0;37m
 ENDCOLOR		=		\033[0m
 
 #***** Textes *****#
 
 START			=		echo "$(GREEN)Compilation of $(NAME) just started$(ENDCOLOR)"
-TEST			=		echo "Running some test\n"
+TEST			=		echo "$(GREY)Running some test\n$(ENDCOLOR)"
 END_COMP		=		echo "$(GREEN)Compilation is done$(ENDCOLOR)"
 CLEAN_TXT		=		echo "$(RED)Deleting objects$(ENDCOLOR)"
 FCLEAN_TXT		=		echo "$(RED)Deleting program$(ENDCOLOR)"
