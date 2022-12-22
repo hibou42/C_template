@@ -28,7 +28,7 @@ ENDCOLOR		=		\033[0m
 #***** Textes *****#
 
 START			=		echo "$(GREEN)Compilation of $(NAME) just started$(ENDCOLOR)"
-TEST			=		echo "Run test"
+TEST			=		echo "Running some test\n"
 END_COMP		=		echo "$(GREEN)Compilation is done$(ENDCOLOR)"
 CLEAN_TXT		=		echo "$(RED)Deleting objects$(ENDCOLOR)"
 FCLEAN_TXT		=		echo "$(RED)Deleting program$(ENDCOLOR)"
