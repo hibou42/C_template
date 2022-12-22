@@ -8,7 +8,8 @@ MAKEFLAGS += --no-print-directory
 
 #***** Sources / Objs *****#
 
-SRC				=		z_test.c
+SRC				=		z_test.c \
+
 OBJS			=		$(SRC:.c=.o)
 
 #***** Libft *****#
@@ -29,7 +30,8 @@ ENDCOLOR		=		\033[0m
 START			=		echo "$(GREEN)Compilation of $(NAME) just started$(ENDCOLOR)"
 TEST			=		echo "Run test"
 END_COMP		=		echo "$(GREEN)Compilation is done$(ENDCOLOR)"
-S_NAME			=		echo "$(RED)Deleting everything$(ENDCOLOR)"
+CLEAN_TXT		=		echo "$(RED)Deleting objects$(ENDCOLOR)"
+FCLEAN_TXT		=		echo "$(RED)Deleting program$(ENDCOLOR)"
 CHARG_LINE		=		echo "$(BG_GREEN)    $(ENDCOLOR)\c"
 BS_N			=		echo "\n"
 
@@ -79,16 +81,16 @@ test: 		all
 #***** Clean *****#
 
 clean:
-			@$(S_OBJS)
+			@$(CLEAN_TXT)
 			@${RM} ${OBJS}
 			@${MLIBFT} clean
+			@tput setaf 1; cat ascii_art/trash; tput setaf default
 
 fclean:		clean
-			@$(S_NAME)
+			@$(FCLEAN_TXT)	
 			@${RM} ${NAME}
 			@${MLIBFT} fclean
-			@tput setaf 1; cat ascii_art/trash; tput setaf default
-			@echo "$(GREEN)Cleaning succes$(ENDCOLOR)"
+			@echo "Cleaning succes"
 
 re:			fclean all
 
