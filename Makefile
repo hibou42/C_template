@@ -2,13 +2,14 @@
 
 NAME			=		template
 
+#***** Makeflags *****#
+
+MAKEFLAGS += --no-print-directory
+
 #***** Sources / Objs *****#
 
 SRC				=		z_test.c
-
 OBJS			=		$(SRC:.c=.o)
-
-MAKEFLAGS += --no-print-directory
 
 #***** Libft *****#
 
@@ -18,31 +19,19 @@ MLIBFT			=		@$(MAKE) -C libft
 #***** Couleurs *****#
 
 GREEN			=		\033[1;32m
+BG_GREEN		=		\033[42m
 BLUE			=		\033[0;94m
 RED				=		\033[1;31m
 ENDCOLOR		=		\033[0m
-BG_G			=		\033[42m
 
 #***** Textes *****#
 
-START			=		echo "$(GREEN)Start compilation\n$(ENDCOLOR)"
-TEST			=		echo "Run test\n"
-END_COMP		=		echo "$(GREEN)End compilation\n$(ENDCOLOR)"
-S_OBJS			=		echo "$(RED)Suppression des objets\n$(ENDCOLOR)"
-S_NAME			=		echo "$(RED)Suppression du programme\n$(ENDCOLOR)"
-CHARG_LINE		=		echo "$(BG_G)    $(ENDCOLOR)\c"
+START			=		echo "$(GREEN)Compilation of $(NAME) just started$(ENDCOLOR)"
+TEST			=		echo "Run test"
+END_COMP		=		echo "$(GREEN)Compilation is done$(ENDCOLOR)"
+S_NAME			=		echo "$(RED)Deleting everything$(ENDCOLOR)"
+CHARG_LINE		=		echo "$(BG_GREEN)    $(ENDCOLOR)\c"
 BS_N			=		echo "\n"
-
-#***** Logo *****#
-
-MSHELL			=		echo "$(GREEN) \t         _________ ______   _______          \n\
-									 \t|\     /|\__   __/|  ___ \ |  ___  ||\     /|\n\
-									 \t| )   ( |   | |   | (   ) )| |   | || |   | |\n\
-									 \t| (___) |   | |   | (__/ / | |   | || |   | |\n\
-									 \t|  ___  |   | |   |  __ (  | |   | || |   | |\n\
-									 \t| (   ) |   | |   | (  \ \ | |   | || |   | |\n\
-									 \t| )   ( |___| |___| )___) )| |___| || (___) |\n\
-									 \t|/     \|\_______/|______/ |_______||_______|$(ENDCOLOR)\n"
 
 #***** Flags *****#
 
@@ -56,14 +45,15 @@ RM				=		rm -f
 all : lib start logo $(NAME)
 
 lib:
-	@$(MLIBFT) all
+			@$(MLIBFT) all
 			@$(END_COMP_LIB)
 
 start:
 			@$(START)
 
 logo :
-			@$(MSHELL)	
+			@tput setaf 2; cat ascii_art/hibou; tput setaf default
+			@$(BS_N)
 
 %.o:		%.c ./libft/libft.h Makefile
 			@$(CC) $(CFLAGS) -c $< -o $@
@@ -73,6 +63,7 @@ $(NAME) :	${OBJS}
 			@$(BS_N)
 			@${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}
 			@$(END_COMP)
+			@tput setaf 2; cat ascii_art/small_hibou1; tput setaf default
 
 l :			${OBJS}
 			${MLIBFT} all
@@ -96,7 +87,8 @@ fclean:		clean
 			@$(S_NAME)
 			@${RM} ${NAME}
 			@${MLIBFT} fclean
-			@echo "Succes cleaning"
+			@tput setaf 1; cat ascii_art/trash; tput setaf default
+			@echo "$(GREEN)Cleaning succes$(ENDCOLOR)"
 
 re:			fclean all
 

@@ -58,18 +58,15 @@ SRCS	=	ft_atoi.c \
 			core_p.c \
 			core_x.c \
 			core_xx.c \
-			ft_puthex.c 
+			ft_puthex.c \
 
 OBJS	= ${SRCS:.c=.o}
 
 #***** Flags *****#
 
 CC	= gcc
-
 AR = ar rcs
-
 RM	= rm -f
-
 CFLAGS	= -Wall -Werror -Wextra
 
 #***** Colors *****#
@@ -82,9 +79,9 @@ ENDCOLOR		=		\033[0m
 
 #******Echo********#
 
-START			=		echo "$(BLUE_T)Start compilation LIBFT\n$(ENDCOLOR)"
-END_COMP_LIB	=		echo "$(BLUE_T)End compilation LIBFT\n$(ENDCOLOR)"
-END_CLEAN	=		echo "$(GREEN)Succes cleaning\n$(ENDCOLOR)"
+START			=		echo "$(BLUE_T)LIBFT compilation started$(ENDCOLOR)"
+END_COMP_LIB	=		echo "$(BLUE_T)LIBFT compilation done\n$(ENDCOLOR)"
+END_CLEAN	=		echo "$(RED)LIBFT cleaning done$(ENDCOLOR)"
 CHARG_LINE		=		echo "$(BLUE)    $(ENDCOLOR)\c"
 BS_N			=		echo "\n"
 
