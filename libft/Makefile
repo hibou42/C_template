@@ -79,11 +79,11 @@ ENDCOLOR		=		\033[0m
 
 #******Echo********#
 
-START			=		echo "$(BLUE_T)LIBFT compilation started$(ENDCOLOR)"
-END_COMP_LIB	=		echo "$(BLUE_T)LIBFT compilation done\n$(ENDCOLOR)"
-END_CLEAN		=		echo "$(GREEN)LIBFT cleaning done$(ENDCOLOR)"
-CHARG_LINE		=		echo "$(BLUE)    $(ENDCOLOR)\c"
-BS_N			=		echo "\n"
+START_TXT			=		echo "$(BLUE_T)LIBFT compilation started$(ENDCOLOR)"
+END_COMP_LIB_TXT	=		echo "$(BLUE_T)LIBFT compilation done\n$(ENDCOLOR)"
+END_CLEAN_TXT		=		echo "$(RED)Cleaning in progress$(ENDCOLOR)"
+CHARG_LINE_TXT		=		echo "$(BLUE)    $(ENDCOLOR)\c"
+BS_N_TXT			=		echo "\n"
 
 #***** Compilation *****#
 
@@ -94,22 +94,22 @@ BS_N			=		echo "\n"
 all: 	start ${NAME}
 
 start:
-		@${START}
+		@${START_TXT}
 
 %.o: %.c
 		@${CC} ${CFLAGS} -c $< -o $@
-		@$(CHARG_LINE)
+		@$(CHARG_LINE_TXT)
 
 ${NAME}: ${OBJS}
-		@$(BS_N)
+		@$(BS_N_TXT)
 		@${AR} ${NAME} ${OBJS}
-		@$(END_COMP_LIB)
+		@$(END_COMP_LIB_TXT)
 
 #***** Clean *****#
 
 clean:		
 		@${RM} ${OBJS} ${OBJSB}
-		@$(END_CLEAN)
+		@$(END_CLEAN_TXT)
 
 fclean:		clean
 		@${RM} ${NAME}

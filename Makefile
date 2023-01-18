@@ -28,13 +28,13 @@ ENDCOLOR		=		\033[0m
 
 #***** Textes *****#
 
-START			=		echo "$(GREEN)Compilation of $(NAME) just started$(ENDCOLOR)"
-TEST			=		echo "$(GREY)Running some test\n$(ENDCOLOR)"
-END_COMP		=		echo "$(GREEN)Compilation is done$(ENDCOLOR)"
+START_TXT		=		echo "$(GREEN)Compilation of $(NAME) just started$(ENDCOLOR)"
+TEST_TXT		=		echo "$(GREY)Running some test$(ENDCOLOR)\n"
+END_COMP_TXT	=		echo "$(GREEN)Compilation is done$(ENDCOLOR)"
 CLEAN_TXT		=		echo "$(RED)Deleting objects$(ENDCOLOR)"
 FCLEAN_TXT		=		echo "$(RED)Deleting program$(ENDCOLOR)"
-CHARG_LINE		=		echo "$(BG_GREEN)    $(ENDCOLOR)\c"
-BS_N			=		echo "\n"
+CHARG_LINE_TXT	=		echo "$(BG_GREEN)    $(ENDCOLOR)\c"
+BS_N_TXT			=		echo "\n"
 
 #***** Flags *****#
 
@@ -45,39 +45,41 @@ RM				=		rm -f
 
 #***** Compilation *****#
 
-all : lib start logo $(NAME)
+all : logo lib start $(NAME)
 
 lib:
 			@$(MLIBFT) all
-			@$(END_COMP_LIB)
-
-start:
-			@$(START)
+			@$(END_COMP_LIB_TXT)
 
 logo :
 			@tput setaf 2; cat ascii_art/hibou; tput setaf default
-			@$(BS_N)
+			@$(BS_N_TXT)
+
+start:
+			@tput setaf 2; cat ascii_art/template; tput setaf default
+			@$(BS_N_TXT)
+			@$(START_TXT)
 
 %.o:		%.c ./libft/libft.h Makefile
 			@$(CC) $(CFLAGS) -c $< -o $@
-			@$(CHARG_LINE)
+			@$(CHARG_LINE_TXT)
 
 $(NAME) :	${OBJS}
-			@$(BS_N)
+			@$(BS_N_TXT)
 			@${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}
-			@$(END_COMP)
+			@$(END_COMP_TXT)
 			@tput setaf 2; cat ascii_art/small_hibou1; tput setaf default
 
 l :			${OBJS}
 			${MLIBFT} all
 			${CC} ${L} -o ${NAME} ${OBJS} ${LIBFT}
-			@$(END_COMP)
+			@$(END_COMP_TXT)
 
 test: 		all
 			@${CC} ${CFLAGS} ${OBJS} libft/libft.a
-			@$(TEST)
+			@$(TEST_TXT)
 			@./a.out
-			@rm -f ./a.out			
+			@rm -f ./a.out
 
 #***** Clean *****#
 
@@ -91,7 +93,7 @@ fclean:		clean
 			@$(FCLEAN_TXT)	
 			@${RM} ${NAME}
 			@${MLIBFT} fclean
-			@echo "Cleaning succes"
+			@echo "$(GREEN)Cleaning succes$(ENDCOLOR)"
 
 re:			fclean all
 
