@@ -75,6 +75,9 @@ l :			${OBJS}
 			${CC} ${L} -o ${NAME} ${OBJS} ${LIBFT}
 			@$(END_COMP_TXT)
 
+leaks :		all
+			leaks -atExit -- ./${NAME} 
+
 test: 		all
 			@${CC} ${CFLAGS} ${OBJS} libft/libft.a
 			@$(TEST_TXT)
